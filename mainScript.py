@@ -101,6 +101,7 @@ runFlag = 1
 # start outside process
 cmd = "ipy ipyScript.py " + dbName + ' ' + str(limit) 
 ipyProc = subprocess.Popen(cmd)
+start =time.time()
 
 while runFlag:
 	ms = getms()
@@ -143,8 +144,9 @@ while runFlag:
 
 # close other script for sure
 ipyProc.send_signal(signal.SIGTERM)
+end = time.time()
 print('PY3 Finished!')
-
+print('Elapsed time: %f' % (end-start))
 """
 Results:
 Cross instance / code language communication using a database works.
